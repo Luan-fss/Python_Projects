@@ -1,0 +1,22 @@
+import random
+
+while True:
+    def play(): 
+        user = input("What's your choice? 'r' para rock, 'p' para papper, 's' para scissors\n")
+        computer = random.choice(['r', 'p', 's'])
+
+        if user == computer: # Vai confirmar se for true retorna empate
+            return 'Esse round foi empate'
+
+        if is_win(user, computer): # Usando a função de condição de vitória
+            return 'Você ganhou'
+        
+        return 'Você perdeu' # Confere se tem true acima, se não , retorna you lost
+
+    # Criando as condições de vitória 
+    def is_win(player, opponent):
+        # win conditions: r>p, s>p, p>r
+        if (player == 'r' and opponent == 's') or (player == 's' and opponent == 'p') or (player == 'p' and opponent == 'r'):
+            return True
+
+    print(play())

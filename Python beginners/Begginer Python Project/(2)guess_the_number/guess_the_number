@@ -1,0 +1,31 @@
+import random
+
+def dificulty(x):
+    # Take a random value and set dificulty
+    if x == 1:
+        y = 100
+        random_number = random.randint(1, y)
+    elif x == 2:
+        y = 50
+        random_number = random.randint(1, y)
+    elif x == 3:
+        y = 10
+        random_number = random.randint(1, y)
+    else:
+        print('Coloque um valor até 100')
+    dificulty = 0
+
+    # Loop até acertar
+    while dificulty != random_number:
+        dificulty = int(input(f'Guess a number between 1 and {y}: '))
+        if dificulty > random_number:
+            print('O número é menor, tente novamente')
+        elif dificulty < random_number:
+            print('O número é maior, tente novamente')
+
+    print(f'Parabens, você acertou o número {random_number}')      
+
+# User choose dificulty
+print('Escolha uma dificuldade \n(1) Hard \n(2) Medium\n(3) Easy')
+dificulty(int(input('Escolha uma dificuldade: ')))
+

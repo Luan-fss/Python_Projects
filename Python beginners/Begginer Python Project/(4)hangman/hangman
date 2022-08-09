@@ -1,0 +1,50 @@
+import random # Importando random.choice
+from words import words # Importando palavras aleátorias
+import string # Importando alfabeto em string
+
+# Função 1 - Escolhendo uma palavra e tornando-a maiúscula
+def get_valid_words(words): # Minha função get_valid_words importou as words 
+    word = random.choice(words)
+    while '-' in word or ' ' in word:
+        word = random.choice(words)
+    return word.upper()
+
+# Função 2 - Criando o jogo: Código > Condições de win e lose com as vidas > return para os users
+def hangman():
+    word = get_valid_words(words) # word = Resposta da execução da minha função 1 no código
+    letras_palavra = set(word) # Letra por letra 'L' 'U' 'A' 'N'
+    alphabet = set(string.ascii_uppercase) # Alfabeto 'A' 'B' 'C'....
+    letras_usadas = set() # Variável para guardas as letras
+
+    lives = 6 # Vidas do jogador
+
+    # Laço enquanto tiver vida ou letras para acertar, não acaba!!!
+    while len(letras_palavra) > 0 and lives > 0:
+        # Return para os users / Depois de feito o código todo
+        print(f'Voce tem {lives} vidas sobrando e ja utilizou essas letras: ', ' '.join(letras_usadas)) # Letras usadas entrarão no espaço ' ' requirido
+        lista_palavras = [letras if letras in letras_usadas else '-' for letras in word] # Itera a word com '-' até acertar as letras com as letras usadas
+        print('Palavra correta: ', ' '.join(lista_palavras))
+
+        # Começo do código
+        letras_usuario = input('Digite uma letra: ').upper()
+        if letras_usuario in alphabet:
+            letras_usadas.add(letras_usuario) # Adiciona ao letras_usadas a letra que o user digitou
+            if letras_usuario in letras_palavra:
+                letras_palavra.remove(letras_usuario) # Letra usuario = character digitado... Letra do usuario remove character do letras_palavra
+
+            else:
+                lives -= 1 
+        
+        elif letras_usuario in letras_usadas:
+            print('Voce ja digitou esse character, tente novamente.')
+
+        else:
+            print('Invalid character')
+
+    # Condições de vitória e derrota
+    if lives == 0:
+        print(f'Voce perdeu!. A palavra certa era {word}')
+    else:
+        print(f'Voce acertou a palavra {word}, parabéns')
+
+hangman() # Executando o hangman
