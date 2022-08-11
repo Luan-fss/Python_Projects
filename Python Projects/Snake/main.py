@@ -1,6 +1,6 @@
 # Escopo = Create settings > Import here
 # Create def main() for upgrade in screen and fixed window
-# Create classes > draw > move... Pass all of them to Loop in main()
+# Create classes > draw > move... Pass all of them to Loop in class main()
 import pygame, random
 from settings import *
 from pygame.math import Vector2
